@@ -100,6 +100,21 @@ function moveInvaders() {
     }
 }
 
+
+function xyToIndex(x, y) {
+    return x + y * width;
+}
+
+function indexToXY(index) {
+    console.log(index)
+    _x = index % width;
+    _y = Math.floor(index / width);
+    return {
+        x: _x,
+        y: _y
+    }
+}
+
 invadersId = setInterval(moveInvaders, 300)
 
 function shoot(e) {
@@ -107,9 +122,17 @@ function shoot(e) {
     let currentLaserIndex = currentShooterIndex
 
     function moveLaser() {
+        let coords = indexToXY(currentLaserIndex)
+        console.log(coords)
+        if(coords.y < 1){
+            squares[currentLaserIndex].classList.remove('laser')
+            clearInterval(laserId)
+        } else {
+        console.log( squares[currentLaserIndex])
         squares[currentLaserIndex].classList.remove('laser')
         currentLaserIndex -= width
         squares[currentLaserIndex].classList.add('laser')
+        }
 
         if (squares[currentLaserIndex].classList.contains('invader')) {
             squares[currentLaserIndex].classList.remove('laser')
@@ -121,7 +144,7 @@ function shoot(e) {
             const alienRemoved = alienInvaders.indexOf(currentLaserIndex)
             aliensRemoved.push(alienRemoved)
             results++
-            resultsDisplay.innerHTML =  results
+            resultsDisplay.innerHTML = results
             console.log(aliensRemoved)
         }
 
