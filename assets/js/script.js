@@ -16,11 +16,14 @@ for (let i = 0; i < 225; i++) {
 
 const squares = Array.from(document.querySelectorAll('.grid div'))
 
-const alienInvaders = [
-    0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
-    15, 16, 17, 18, 19, 20, 21, 22, 23, 24,
-    30, 31, 32, 33, 34, 35, 36, 37, 38, 39
-]
+var alienInvaders = [];
+ 
+ for (var ra = 0; ra < 100; ra++) {  
+      alienInvaders.push(ra);  
+      console.log(Math.floor(Math.random() * 60));
+      console.log(alienInvaders) 
+    }
+
 
 function draw() {
     for (let i = 0; i < alienInvaders.length; i++) {
@@ -115,7 +118,7 @@ function indexToXY(index) {
     }
 }
 
-invadersId = setInterval(moveInvaders, 300)
+invadersId = setInterval(moveInvaders, 900)
 
 function shoot(e) {
     let laserId
@@ -139,7 +142,7 @@ function shoot(e) {
             squares[currentLaserIndex].classList.remove('invader')
             squares[currentLaserIndex].classList.add('boom')
 
-            setTimeout(() => squares[currentLaserIndex].classList.remove('boom'), 300)
+            setTimeout(() => squares[currentLaserIndex].classList.remove('boom'), 200)
             clearInterval(laserId)
             const alienRemoved = alienInvaders.indexOf(currentLaserIndex)
             aliensRemoved.push(alienRemoved)
@@ -151,7 +154,7 @@ function shoot(e) {
     }
     switch (e.key) {
         case 'ArrowUp':
-            laserId = setInterval(moveLaser, 100)
+            laserId = setInterval(moveLaser, 200)
 
     }
 }

@@ -3,6 +3,7 @@
     border: 1px solid black;
     display: flex;
     flex-wrap: wrap;
+  
 }
 
 .grid div {
@@ -12,18 +13,27 @@
 }
 
 .invader{
-    background-color: purple;
+    background-image: url(../img/invader.png);
+    background-size: contain;
+    background-repeat: no-repeat;
     border-radius: 10px;
 }
 
 .shooter{
-    background-color: green;
+    background-image: url(../img/spaceship.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    border-radius: 10px;
 }
 
 .laser {
-    background-color: orange;
+    background-image: url(../img/pixel_laser_yellow.svg);
 }
 
 .boom{
     background-color: red;
+}
+body{
+    color: white;
+    background-image: url(../img/background-black.png);
 }
