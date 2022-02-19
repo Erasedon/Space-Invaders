@@ -515,6 +515,10 @@ function animate() {
                 game.active = false
             }, 2000)
 
+            setTimeout(() => {
+                window.location.reload();
+            }, 5000)
+
             createParticles({
                 object: player,
                 color: 'white',
