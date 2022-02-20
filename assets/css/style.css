@@ -1,15 +1,18 @@
+.divcenter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .grid{
     width: 802px;
     border: 1px solid black;
     display: flex;
-    flex-wrap: wrap;
-  
+    flex-wrap: wrap; 
 }
 
 .grid div {
     width: 53px;
     height: 53px;
-
 }
 
 .invader{
@@ -33,7 +36,14 @@
 .boom{
     background-color: red;
 }
-body{
+.results{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: white;
+}
+
+body{
     background-image: url(../img/background-black.png);
+   
 }
