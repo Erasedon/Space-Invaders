@@ -1,13 +1,22 @@
+ @font-face {
+        font-family: "Arcade";
+            src: url("fonts/ARCADE_I.TTF");
+        }
+   
+    
+body{
+    color: white; 
+    font-family: Arcade, sans-serif;
+    background-image: url(../img/background-black.png);
+   
+}
 .divcenter{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color:grey;
 }
 .grid{
-    background-image: url(../img/background-black.png);
     width: 1202px;
-    border: 1px solid black;
     display: flex;
     flex-wrap: wrap; 
 }

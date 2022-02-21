@@ -1,6 +1,6 @@
 const grid = document.querySelector('.grid')
 const resultsDisplay = document.querySelector('.results')
-let currentShooterIndex = 202
+let currentShooterIndex = 209
 let width = 20
 let direction = 1
 let invadersId
@@ -83,16 +83,12 @@ function indexToXY(index) {
 function moveInvaders(i) {
     const LeftEdge = alienInvaders[0] % width === 0
     const RightEdge = alienInvaders[alienInvaders.length - 1] % width === width - 1 
-    let j=195; 
+    let j=180; 
     console.log(alienInvaders[0])
     console.log(j === alienInvaders[0])
     if(j === alienInvaders[0]){
      
-        for (let j = 195; j === alienInvaders[0];j++) {
-            // console.log(alienInvaders[19])
-            // console.log(invadersId) 
-            // console.log(squares.length)
-       
+        for (let j = 180; j === alienInvaders[0];j++) {
                 remove()           
                 clearInterval(invadersId)
             
@@ -133,12 +129,12 @@ function moveInvaders(i) {
 
     for (let i = 0; i < alienInvaders.length; i++) {
         if (alienInvaders[i] > squares.length) {
-            resultsDisplay.innerHTML = 'GAME OVER'
+            resultsDisplay.innerHTML = 'GAME OVER TON SCORES EST DE :'+results
             clearInterval(invadersId)
         }
     }
     if (aliensRemoved.length === alienInvaders.length) {
-        resultsDisplay.innerHTML = 'YOU WIN'
+        resultsDisplay.innerHTML = 'YOU WIN TON SCORES EST DE :'+results
         clearInterval(invadersId)
     }
 }
@@ -182,7 +178,7 @@ function shoot(e) {
     }
     switch (e.key) {
         case 'ArrowUp':
-            laserId = setInterval(moveLaser, 300)
+            laserId = setInterval(moveLaser, 400)
 
     }
 }
