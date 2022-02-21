@@ -2,17 +2,19 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color:grey;
 }
 .grid{
-    width: 802px;
+    background-image: url(../img/background-black.png);
+    width: 1202px;
     border: 1px solid black;
     display: flex;
     flex-wrap: wrap; 
 }
 
 .grid div {
-    width: 53px;
-    height: 53px;
+    width: 60px;
+    height: 60px;
 }
 
 .invader{
@@ -40,10 +42,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    color: white;
+    
 }
 
-body{
-    background-image: url(../img/background-black.png);
-   
+#back_arrow {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    height: 20px;
+    width: auto;
+    z-index: 12;
 }

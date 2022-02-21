@@ -1,14 +1,14 @@
 const grid = document.querySelector('.grid')
 const resultsDisplay = document.querySelector('.results')
 let currentShooterIndex = 202
-let width = 15
+let width = 20
 let direction = 1
 let invadersId
 let goingRight = true
 let aliensRemoved = []
 let results = 0
 
-for (let i = 0; i < 225; i++) {
+for (let i = 0; i < 240; i++) {
     const squares = document.createElement('div')
     grid.appendChild(squares)
 
@@ -19,9 +19,9 @@ const squares = Array.from(document.querySelectorAll('.grid div'))
 var alienInvaders = [];
 console.log(alienInvaders)
  
- for (var ra = 0; ra < 20; ra++) {  
+ for (var ra = 0; ra < 50; ra++) {  
       alienInvaders.push(ra);  
-      console.log(Math.floor(Math.random() * 5));
+      console.log(Math.floor(Math.random() * 50));
        
     }   
 
@@ -146,7 +146,7 @@ function moveInvaders(i) {
 
 
 
-invadersId = setInterval(moveInvaders, 200)
+invadersId = setInterval(moveInvaders, 900)
 
 function shoot(e) {
     let laserId
@@ -182,7 +182,7 @@ function shoot(e) {
     }
     switch (e.key) {
         case 'ArrowUp':
-            laserId = setInterval(moveLaser, 200)
+            laserId = setInterval(moveLaser, 300)
 
     }
 }
