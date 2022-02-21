@@ -134,7 +134,7 @@ function moveInvaders(i) {
         }
     }
     if (aliensRemoved.length === alienInvaders.length) {
-        resultsDisplay.innerHTML = 'YOU WIN TON SCORES EST DE :'+results
+        resultsDisplay.innerHTML = 'YOU WIN TON SCORE EST DE :'+results
         clearInterval(invadersId)
     }
 }
