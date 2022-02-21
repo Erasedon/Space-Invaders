@@ -1,9 +1,8 @@
 const scoreEl = document.querySelector('#scoreEl')
 const canvas = document.querySelector('canvas')
 const c = canvas.getContext('2d')
-const cheatactive = document.getElementById('cheat')
 
-/* console.log(scoreEl) */
+console.log(scoreEl)
 
 //set canvas
 canvas.width = innerWidth
@@ -20,9 +19,9 @@ class Player { //spaceship
         this.opacity = 1
         
         const image = new Image() // ini img size
-        image.src = './img/spaceship.png'
+        image.src = './img/alcoolo.png'
         image.onload = () => {
-            const scale = 0.15
+            const scale = 0.3
             this.image = image
             this.width = image.width * scale
             this.height = image.height * scale
@@ -70,7 +69,7 @@ class Player { //spaceship
 }
 
 class Projectile { // projectile
-    constructor({position, velocity, color = 'white'}) {
+    constructor({position, velocity, color = 'yellow'}) {
         this.position = position
         this.velocity = velocity
 
@@ -130,12 +129,12 @@ class InvaderProjectile { // invaders projectiles
         this.position = position
         this.velocity = velocity
 
-        this.width = 3
-        this.height = 10
+        this.width = 8
+        this.height = 15
     }
 
     draw() {
-        c.fillStyle = 'white'
+        c.fillStyle = 'yellow'
         c.fillRect(this.position.x, this.position.y, this.width, this.height)
     }
 
@@ -154,9 +153,9 @@ class Invader { //invader
         }
         
         const image = new Image() // ini img size
-        image.src = './img/invader.png'
+        image.src = './img/beer.png'
         image.onload = () => {
-            const scale = 0.2
+            const scale = 0.05
             this.image = image
             this.width = image.width * scale
             this.height = image.height * scale
@@ -196,7 +195,7 @@ class Invader { //invader
             },
             velocity: {
                 x: 0,
-                y: 5
+                y: 6
             }
         }))
     }
@@ -255,7 +254,7 @@ class Bomb {
         this.position = position
         this.velocity = velocity
         this.radius = 0
-        this.color = '#be2edd'
+        this.color = 'green'
         this.opacity = 1
         this.active = false
 
@@ -296,8 +295,8 @@ class Bomb {
             this.velocity.x = 0
             this.velocity.y = 0
             gsap.to(this, {
-                radius: 150, //taille explosion bombe
-                color: 'white'
+                radius: 500, //taille explosion bombe
+                color: 'yellow'
             })
 
             gsap.to(this, {
@@ -318,7 +317,7 @@ class PowerUp {
     draw() {
         c.beginPath()
         c.arc(this.position.x, this.position.y, this.radius, 0, Math.PI * 2)
-        c.fillStyle = 'cyan'
+        c.fillStyle = '#324C0E'
         c.fill()
         c.closePath()
     }
@@ -361,21 +360,6 @@ let game = {
     active: true
 }
 
-for (let i = 0; i < 100; i++) { 
-    particles.push(new Particle({
-        position: {
-            x: Math.random() * canvas.width,
-            y: Math.random() * canvas.height
-        },
-        velocity: {
-            x: 0,
-            y: 0.3
-        },
-        radius: Math.random() * 2,
-        color: 'white'
-        })
-    )
-}
 let score = 0
 
 function createParticles({object, color, fades}) {
@@ -389,8 +373,8 @@ function createParticles({object, color, fades}) {
                 x: (Math.random() - 0.5) * 2,
                 y: (Math.random() - 0.5) *2
             },
-            radius: Math.random() * 3,
-            color: color || '#e2c535',
+            radius: Math.random() * 15,
+            color: color || 'white',
             fades: true
             })
         )
@@ -401,7 +385,7 @@ function createScoreLabel({score = 100, object}) {
     const scoreLabel = document.createElement('label')
         scoreLabel.innerHTML = 100
         scoreLabel.style.position = 'absolute'
-        scoreLabel.style.color = 'white'
+        scoreLabel.style.color = 'blue'
         scoreLabel.style.top = object.position.y + 'px'
         scoreLabel.style.left = object.position.x + 'px'
         scoreLabel.style.userSelect = 'none'
@@ -419,10 +403,10 @@ function createScoreLabel({score = 100, object}) {
 function animate() {
     if (!game.active) return
     requestAnimationFrame(animate)
-    c.fillStyle = 'black'
+    c.fillStyle = '#665A15'
     c.fillRect(0, 0, canvas.width, canvas.height)
 
-    /* console.log(powerUps) */
+    console.log(powerUps)
 
     for (let i = powerUps.length - 1; i >= 0; i--) {
         const powerUp = powerUps [i]
@@ -522,7 +506,7 @@ function animate() {
 
             createParticles({
                 object: player,
-                color: 'white',
+                color: '#5F8C3B',
                 fades: true
             })
 
@@ -564,11 +548,11 @@ function animate() {
                 projectiles.splice(i, 1)
                 powerUps.splice(j, 1)
                 player.powerUp = 'MachineGun'
-                /* console.log('powerup started') */
+                console.log('powerup started')
 
                 setTimeout(() => {
                     player.powerUp = null
-                    /* console.log('powerup endend') */
+                    console.log('powerup endend')
                 }, 2000) //time powerup
         }
     }
@@ -580,7 +564,7 @@ function animate() {
         grid.update()
 
         //spawn projectiles
-    if (frames % 40 === 0 && grid.invaders.length > 0) { // frame % = un tir tout les x frame
+    if (frames % 80 === 0 && grid.invaders.length > 0) { // frame % = un tir tout les x frame
         grid.invaders[Math.floor(Math.random() * grid.invaders.length)].shoot(
             invaderProjectiles
         )
@@ -639,15 +623,12 @@ function animate() {
                         //remove invader and projectile
                         if (invaderFound && projectileFound) {
                             score += 100
-                            /* console.log(score) */
+                            console.log(score)
 
 
                             scoreEl.innerHTML = score
-
-                            if (score > 10000) {
-                                cheatactive.style.display = "flex"
-                            }
                             
+                        
                             //dynamic score level
                             createScoreLabel({
                                 object: invader
@@ -665,11 +646,11 @@ function animate() {
                                         y: invader.position.y + invader.height / 2
                                     },
                                     velocity: {
-                                        x: (Math.random() - 0.5) * 5, //deplacement particule explosion invader
-                                        y: (Math.random() - 0.5) * 5
+                                        x: (Math.random() - 0.5) * 30, //deplacement particule explosion invader
+                                        y: (Math.random() - 0.5) * 30
                                     },
-                                    radius: Math.random() * 3,
-                                    color: '#f91e21',
+                                    radius: Math.random() * 8,
+                                    color: 'yellow',
                                     fades: true
                                     })
                                 )
@@ -699,16 +680,16 @@ function animate() {
 
     if (keys.a.pressed && player.position.x >= 0) {
         player.velocity.x = -7
-        player.rotation = -0.15
+        player.rotation = -1
     } else if (keys.d.pressed  && player.position.x +player.width <= canvas.width) {
         player.velocity.x = 7
-        player.rotation = 0.15
+        player.rotation = 1
     } else {
         player.velocity.x = 0
         player.rotation = 0
     }
 
-    /* console.log(frames) */
+    console.log(frames)
     //spawning enemies
     if (frames % randomInterval === 0) {
         grids.push(new Grid())
@@ -730,10 +711,10 @@ function animate() {
                 x: 0,
                 y: -10
             },
-            color: 'cyan'
+            color: '#324C0E'
         })
     )
-
+    
     frames++
 }
 
@@ -815,8 +796,7 @@ addEventListener('keyup', ({key}) => { // when keyup -> stop move
 })
 
 function cheat(){
-console.log("je triche")
-location = "../easter-egg/index.html"
-}
-
-
+    console.log("je triche")
+    location = "../space-invadersvg/index.html"
+    }
+    
