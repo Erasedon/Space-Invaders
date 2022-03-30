@@ -644,7 +644,7 @@ function animate() {
 
                             scoreEl.innerHTML = score
 
-                            if (score > 10000) {
+                            if (score > 150000) {
                                 cheatactive.style.display = "flex"
                             }
                             
